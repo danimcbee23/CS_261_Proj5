@@ -51,7 +51,7 @@ class MinHeap:
         # Percolate up heap to maintain balance
         while curr_index > 0:
             par_index = (curr_index - 1)//2
-            if self._heap[curr_index] > self._heap[par_index]:
+            if self._heap[curr_index] < self._heap[par_index]:
                 self._heap[curr_index], self._heap[par_index] = self._heap[par_index], self._heap[curr_index]
                 curr_index = par_index
             else:
