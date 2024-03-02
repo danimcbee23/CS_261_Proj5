@@ -50,9 +50,9 @@ class MinHeap:
 
         # Percolate up heap to maintain balance
         while curr_index > 0:
-            par_index = (curr_index - 1)//2
+            par_index = (curr_index - 1) // 2
             if self._heap[curr_index] < self._heap[par_index]:
-                self._heap[curr_index], self._heap[par_index] = self._heap[par_index], self._heap[curr_index]
+                self._heap[par_index], self._heap[curr_index] = self._heap[curr_index], self._heap[par_index]
                 curr_index = par_index
             else:
                 break
@@ -60,12 +60,7 @@ class MinHeap:
     def is_empty(self) -> bool:
         """ Return T if heap empty, else F"""
 
-        # Heap empty, return T
-        if self.size == 0 or self is None:
-            return True
-        else:
-            return False
-        pass
+        return self._heap.length() == 0
 
     def get_min(self) -> object:
         """ Returns the minimum value of the heap """
@@ -89,15 +84,12 @@ class MinHeap:
 
     def size(self) -> int:
         """ Returns the size of the heap """
-        print(self._heap.length())
-
+        return self._heap.length()
 
     def clear(self) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """ Clear items from heap """
 
+        self._heap = DynamicArray()
 
 def heapsort(da: DynamicArray) -> None:
     """
