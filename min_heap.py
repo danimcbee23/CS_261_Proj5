@@ -60,16 +60,15 @@ class MinHeap:
     def is_empty(self) -> bool:
         """ Return T if heap empty, else F"""
 
-        if self._heap.length() == 0:
+        if self.size() == 0:
             return True
-        else:
-            return False
+        return False
 
     def get_min(self) -> object:
         """ Returns the minimum value of the heap """
 
-        if self.is_empty:
-            return MinHeapException
+        if self.is_empty():
+            raise MinHeapException
         else:
             return self._heap[0]
 
