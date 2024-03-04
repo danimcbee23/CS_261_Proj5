@@ -75,6 +75,9 @@ class MinHeap:
         if self.is_empty():
             raise MinHeapException
 
+        if self._heap is None:
+            raise MinHeapException
+
         heap_len = self._heap.length() - 1
         last_node = self._heap[heap_len]
 
