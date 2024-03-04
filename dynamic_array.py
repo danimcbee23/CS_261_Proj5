@@ -3,13 +3,7 @@
 # Course: CS261 - Data Structures
 # Assignment: 2
 # Due Date: 2/5/24
-# Description: Create multiple methods of the DynamicArray class. Resize - change
-# capacity of the array, Append - add new value to array, Insert at Index - add
-# a value to a specific location in the array, Remove at Index - removes a value
-# at a specific location in the array, Slice - Remove a specific range of items from
-# the array, Merge - Combine two arrays, Map - Create new array derived from map_func, 
-# Filter - filter specific items in the array into a new array, Reduce - reduce the 
-# of the array, Find Mode - find the mode of the array and return the frequency.
+# Description: Implementation of DynamicArray class. 
  
 
 from static_array import StaticArray
@@ -138,7 +132,7 @@ class DynamicArray:
     # -----------------------------------------------------------------------
 
     def resize(self, new_capacity: int) -> None:
-    # Resize an array
+    """ Resize an array """
 
         if new_capacity <= 0 or new_capacity < self.length():
             return
@@ -156,7 +150,7 @@ class DynamicArray:
         pass
 
     def append(self, value: object) -> None:
-    # Add a value to array
+    """ Add a value to array """
         
         curr_len = self.length()
         curr_cap = self.get_capacity()
@@ -173,7 +167,7 @@ class DynamicArray:
         pass
 
     def insert_at_index(self, index: int, value: object) -> None:
-    # Add a value at specific index
+    """ Add a value at specific index """
         
         curr_cap = self.get_capacity()
         curr_len = self.length()
@@ -197,7 +191,7 @@ class DynamicArray:
         pass
 
     def remove_at_index(self, index: int) -> None:
-    # Remove a value at specific index
+    """ Remove a value at specific index """
         
         curr_cap = self.get_capacity()
         curr_len = self.length()
@@ -218,7 +212,7 @@ class DynamicArray:
         pass
 
     def slice(self, start_index: int, size: int) -> "DynamicArray":
-    # Pull values from array between a specific range
+    """ Pull values from array between a specific range """
         
         curr_len = self.length()
         new_arr = DynamicArray()
@@ -239,7 +233,7 @@ class DynamicArray:
         pass
 
     def merge(self, second_da: "DynamicArray") -> None:
-    # Append items from new array into original array
+    """ Append items from new array into original array """
         new_len = second_da.length()
 
         # Iterate through new array and add values to original array
@@ -250,7 +244,7 @@ class DynamicArray:
         pass
 
     def map(self, map_func) -> "DynamicArray":
-    # Create a new array w/ values derived by the map_func
+    """ Create a new array w/ values derived by the map_func """
         
         new_arr = DynamicArray()
         curr_len = self.length()
@@ -266,7 +260,7 @@ class DynamicArray:
         pass
 
     def filter(self, filter_func) -> "DynamicArray":
-    # Filters the original array and creates a new array with those values
+    """ Filters the original array and creates a new array with those values """
         
         new_arr = DynamicArray()
         curr_len = self.length()
@@ -282,7 +276,7 @@ class DynamicArray:
         pass
 
     def reduce(self, reduce_func, initializer=None) -> object:
-    # Create a new array w/ values derived by reduce_func
+    """ Create a new array w/ values derived by reduce_func """
         
         curr_len = self.length()
 
@@ -305,7 +299,7 @@ class DynamicArray:
         pass
 
 def find_mode(arr: DynamicArray) -> tuple[DynamicArray, int]:
-# Returns the values in the array that appear most and the count of times seen
+""" Returns the values in the array that appear most and the count of times seen """
     
     arr_len = arr.length()
     mode_arr = DynamicArray()
