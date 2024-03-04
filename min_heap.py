@@ -93,10 +93,11 @@ class MinHeap:
         """ Build a heap """
 
         self._heap = DynamicArray(da)
-        arr_len = da.length()
+        heap_len = self._heap.length()
 
-        for i in range(arr_len):
-            self.add(da[i])
+        last_parent = (heap_len - 2) // 2
+        for i in range(last_parent, -1, -1):
+            self._percolate_down(i)
 
     def size(self) -> int:
         """ Returns the size of the heap """
