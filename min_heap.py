@@ -48,7 +48,7 @@ class MinHeap:
         heap_len = self._heap.length()
         curr_index = heap_len - 1
 
-        # Percolate up heap to maintain balance
+        # Percolate down heap switching values to maintain balance
         while curr_index > 0:
             par_index = (curr_index - 1) // 2
             if self._heap[curr_index] < self._heap[par_index]:
@@ -60,13 +60,16 @@ class MinHeap:
     def is_empty(self) -> bool:
         """ Return T if heap empty, else F"""
 
+        # Return T if heap empty
         if self.size() == 0:
             return True
+        # Otherwise return F
         return False
 
     def get_min(self) -> object:
         """ Returns the minimum value of the heap """
 
+        # Locate the smallest number in heap
         if self.is_empty():
             raise MinHeapException
         else:
@@ -74,15 +77,20 @@ class MinHeap:
 
     def remove_min(self) -> object:
         """ Remove minimum node"""
+
+        # Raise error empty
         if self.is_empty():
             raise MinHeapException
 
+        # Initialize pointers
         min_node = self._heap[0]
         heap_len = self._heap.length() - 1
         last_node = self._heap[heap_len]
 
+        # Remove the last node
         self._heap.remove_at_index(heap_len)
 
+        # Set last node to root and percolate down
         if not self.is_empty():
             self._heap[0] = last_node
             self._percolate_down(0)
@@ -90,17 +98,20 @@ class MinHeap:
         return min_node
 
     def build_heap(self, da: DynamicArray) -> None:
-        """ Build a heap """
+        """ Build out a min heap  """
 
+        # Create heap and set length
         self._heap = DynamicArray(da)
         heap_len = self._heap.length()
 
+        # locate last parent node and percolate the new node down
         last_parent = (heap_len - 2) // 2
         for i in range(last_parent, -1, -1):
             self._percolate_down(i)
 
     def size(self) -> int:
         """ Returns the size of the heap """
+
         return self._heap.length()
 
     def clear(self) -> None:
@@ -123,6 +134,7 @@ class MinHeap:
         if right_index < arr_len and self._heap[right_index] < self._heap[min_node]:
             min_node = right_index
 
+        # Swap parent & child nodes before percolating again
         if min_node != parent:
             self._heap[parent], self._heap[min_node] = self._heap[min_node], self._heap[parent]
             self._percolate_down(min_node)
