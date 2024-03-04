@@ -80,11 +80,11 @@ class MinHeap:
 
         self._heap.remove_at_index(heap_len)
 
-        self._heap[0] = last_node
-        min_node = self._heap[0]
-        self._percolate_down(min_node)
+        if not self.is_empty():
+            self._heap[0] = last_node
+            self._percolate_down(0)
 
-        return min_node
+        return last_node
 
     def build_heap(self, da: DynamicArray) -> None:
         """ Build a heap """
