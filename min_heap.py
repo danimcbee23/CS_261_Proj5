@@ -71,16 +71,29 @@ class MinHeap:
             return self._heap[0]
 
     def remove_min(self) -> object:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """ Remove minimum node"""
+        if self.is_empty():
+            raise MinHeapException
+
+        heap_len = self._heap.length() - 1
+        last_node = self._heap[heap_len]
+
+        self._heap.remove_at_index(heap_len)
+
+        self._heap[0] = last_node
+        min_node = self._heap[0]
+        self._percolate_down(min_node)
+
+        return min_node
 
     def build_heap(self, da: DynamicArray) -> None:
-        """
-        TODO: Write this implementation
-        """
-        pass
+        """ Build a heap """
+
+        self._heap = DynamicArray(da)
+        arr_len = da.length()
+
+        for i in range(arr_len):
+            self.add(da[i])
 
     def size(self) -> int:
         """ Returns the size of the heap """
@@ -91,22 +104,42 @@ class MinHeap:
 
         self._heap = DynamicArray()
 
+    def _percolate_down(self, parent: int) -> None:
+        """ Percolate the item down heap to aid in balancing"""
+
+        # Set up Pointers
+        arr_len = self._heap.length()
+        left_index = 2 * parent + 1
+        right_index = 2 * parent + 2
+        min_node = parent
+
+        # Compare children with parent node
+        if left_index < arr_len and self._heap[left_index] < self._heap[min_node]:
+            min_node = left_index
+        if right_index < arr_len and self._heap[right_index] < self._heap[min_node]:
+            min_node = right_index
+
+        if min_node != parent:
+            self._heap[parent], self._heap[min_node] = self._heap[min_node], self._heap[parent]
+            self._percolate_down(min_node)
+        return
+
 def heapsort(da: DynamicArray) -> None:
-    """
-    TODO: Write this implementation
-    """
-    pass
+    """ Sort the items in da """
+
+    heap = MinHeap(da)
+    arr_len = da.length()
+
+    for i in range(arr_len -1, -1, -1):
+        da[i] = heap.remove_min()
 
 
 # It's highly recommended that you implement the following optional          #
 # function for percolating elements down the MinHeap. You can call           #
 # this from inside the MinHeap class. You may edit the function definition.  #
 
-def _percolate_down(da: DynamicArray, parent: int) -> None:
-    """
-    TODO: Write your implementation
-    """
-    pass
+
+
 
 
 # ------------------- BASIC TESTING -----------------------------------------
