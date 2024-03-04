@@ -60,7 +60,10 @@ class MinHeap:
     def is_empty(self) -> bool:
         """ Return T if heap empty, else F"""
 
-        return self._heap.length() == 0
+        if self._heap.length() == 0:
+            return True
+        else:
+            return False
 
     def get_min(self) -> object:
         """ Returns the minimum value of the heap """
@@ -72,10 +75,7 @@ class MinHeap:
 
     def remove_min(self) -> object:
         """ Remove minimum node"""
-        if self.is_empty():
-            raise MinHeapException
-
-        if self._heap is None:
+        if self.is_empty() is True:
             raise MinHeapException
 
         heap_len = self._heap.length() - 1
