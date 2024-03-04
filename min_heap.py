@@ -75,9 +75,10 @@ class MinHeap:
 
     def remove_min(self) -> object:
         """ Remove minimum node"""
-        if self.is_empty() is True:
+        if self.is_empty():
             raise MinHeapException
 
+        min_node = self._heap[0]
         heap_len = self._heap.length() - 1
         last_node = self._heap[heap_len]
 
@@ -87,7 +88,7 @@ class MinHeap:
             self._heap[0] = last_node
             self._percolate_down(0)
 
-        return last_node
+        return min_node
 
     def build_heap(self, da: DynamicArray) -> None:
         """ Build a heap """
