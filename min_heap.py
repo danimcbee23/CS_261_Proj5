@@ -68,7 +68,7 @@ class MinHeap:
     def get_min(self) -> object:
         """ Returns the minimum value of the heap """
 
-        if self.is_empty is True:
+        if self.is_empty:
             return MinHeapException
         else:
             return self._heap[0]
@@ -127,23 +127,15 @@ class MinHeap:
             self._percolate_down(min_node)
         return
 
+
 def heapsort(da: DynamicArray) -> None:
     """ Sort the items in da """
 
     heap = MinHeap(da)
     arr_len = da.length()
 
-    for i in range(arr_len -1, -1, -1):
+    for i in range(arr_len - 1, -1, -1):
         da[i] = heap.remove_min()
-
-
-# It's highly recommended that you implement the following optional          #
-# function for percolating elements down the MinHeap. You can call           #
-# this from inside the MinHeap class. You may edit the function definition.  #
-
-
-
-
 
 # ------------------- BASIC TESTING -----------------------------------------
 
